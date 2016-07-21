@@ -1,0 +1,23 @@
+//get the http and filesystem modules
+var http = require('http'),
+	fs = require('fs');
+
+//create out server using the http modules
+http.createServer(function(req,res){
+	//write to our server.set configuration for the responce
+	res.writeHead(200,{
+		'Content-Type':'text/html',
+	'Access-Control-Allow-Origin':'*'
+	});
+	
+	//grab the index.html file using fs
+	var readStream = fs.createReadStream(__dirname+ '/first-test.html');
+	
+	//send the index.html file to our user
+	readStream.pipe(res);
+	
+}).listen(1337);
+	
+//tell oursevles what's happening
+	
+console.log('Visit me at http://localHost:1337');
